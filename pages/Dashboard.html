@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+
+
+</head>
+<body>
+    <nav class="navigation">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <div class="right-feature">
+            <i class="moon bi bi-moon-fill"></i>
+
+            <div class="account">
+                <i class="bi bi-person-circle"></i>
+                <div class="profile">
+                    <h5 class="name">Muhamad</h5>
+                    <h5 class="status">Admin</h5>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard">
+        <h4>Dashboard</h4>
+        <div class="card-dashboard">
+            <div class="card-information-data">
+                <div class="four-card">
+                    <div class="card-data">
+                        <div class="card-value">
+                            <h5>Stok</h5>
+                            <h4>210</h4>
+                            <h5>Total Bahan</h5>
+                        </div>
+                        <div class="data-value-icon">
+                            <i class="bi bi-stack"></i>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="four-card">
+                    <div class="card-data">
+                        <div class="card-value">
+                            <h5>Transaksi</h5>
+                            <h4>23</h4>
+                            <h5>Total Transaksi Hari ini</h5>
+                        </div>
+                        <div class="data-value-icon">
+                            <i class="bi bi-credit-card"></i>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="four-card">
+                    <div class="card-data">
+                        <div class="card-value">
+                            <h5>Stok</h5>
+                            <h4>3</h4>
+                            <h5>Stok Menipis</h5>
+                        </div>
+                        <div class="data-value-icon">
+                            <i class="bi bi-exclamation-circle"></i>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="four-card">
+                    <div class="card-data">
+                        <div class="card-value">
+                            <h5>Pendapatan</h5>
+                            <h4>Rp 210.000</h4>
+                            <h5>Keuntungan Hari ini</h5>
+                        </div>
+                        <div class="data-value-icon">
+                            <i class="bi bi-bar-chart-line"></i>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+             
+            <!-- transaksi harian -->
+            <div class="card-transaction">
+                <div class="chart-transaction">
+                    <h4>Transaksi Harian</h4>
+                    <div class="chart-container">
+                        <div id="transactionTrendChart"></div>
+                    </div>
+                    <script src="../assets/js/transaksi_harian.js"></script>
+                    
+                </div>
+                
+            </div>
+
+        </div>
+        <div class="profit">
+            <h5>Keuntungan</h5>
+            <div class="profit-comparison">
+                <div class="this-week">
+                    <span>Minggu ini</span>
+                    <div class="profit-value">
+                        <div class="purple-cirlce"></div>
+                        <span>Rp 4.289.000</span>
+                    </div>
+                </div>
+
+                <div class="previos-week">
+                    <span>Minggu Sebelumnya</span>
+                    <div class="profit-value">
+                        <div class="green-cirlce"></div>
+                        <span>Rp 4.289.000</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- <div class="chart-weekly">
+                <div class="chart-container">
+                  <div id="weeklyTransactionChart"></div>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+                <script>
+                  // Hari dalam seminggu
+                  const hariMinggu = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+              
+                  // Fungsi untuk generate nilai acak
+                  function generateDataRupiah() {
+                    const hasil = [];
+                    for (let i = 0; i < 7; i++) {
+                      const nilai = Math.floor(Math.random() * 400000) + 100000; // Rp100.000 - Rp500.000
+                      hasil.push(nilai);
+                    }
+                    return hasil;
+                  }
+              
+                  // Konfigurasi chart
+                  const opsiChartMingguan = {
+                    series: [
+                      {
+                        name: "Transaksi Cabang A",
+                        data: generateDataRupiah(),
+                      },
+                      {
+                        name: "Transaksi Cabang B",
+                        data: generateDataRupiah(),
+                      }
+                    ],
+                    legend: {
+                      show: false
+                    },
+
+                    chart: {
+                      type: 'line',
+                      height: 350,
+                      toolbar: { show: false },
+                      foreColor: '#cbd5e1'
+                    },
+                    colors: ['#8b5cf6', '#22c55e'], // ungu dan hijau
+                    stroke: {
+                      width: 3,
+                      curve: 'smooth'
+                    },
+                    markers: {
+                      size: 4
+                    },
+                    xaxis: {
+                      categories: hariMinggu,
+                      axisBorder: { show: false },
+                      axisTicks: { show: false }
+                    },
+                    yaxis: {
+                      labels: {
+                        formatter: function(val) {
+                          return 'Rp ' + val.toLocaleString('id-ID');
+                        }
+                      },
+                      title: {
+                        text: 'Nominal (Rp)',
+                        style: {
+                          color: '#cbd5e1',
+                          fontSize: '12px',
+                          fontWeight: 300
+                        }
+                      }
+                    },
+                    grid: {
+                      show: true,
+                      borderColor: '#4b5563',
+                      strokeDashArray: 0,
+                      xaxis: {
+                        lines: { show: true }
+                      },
+                      yaxis: {
+                        lines: { show: true }
+                      },
+                      position: 'back',
+                      padding: {
+                        top: 0,
+                        right: 10,
+                        bottom: 0,
+                        left: 10
+                      }
+                    },
+                    tooltip: {
+                      y: {
+                        formatter: function(val) {
+                          return 'Rp ' + val.toLocaleString('id-ID');
+                        }
+                      }
+                    },
+                    legend: {
+                      position: 'top',
+                      horizontalAlign: 'left'
+                    }
+                  };
+              
+                  const chartMingguan = new ApexCharts(
+                    document.querySelector("#weeklyTransactionChart"),
+                    opsiChartMingguan
+                  );
+                  chartMingguan.render();
+                </script>
+              </div> -->
+              <div class="chart-weekly">
+                <!-- <h4 style="color:white;">Grafik Transaksi Mingguan</h4> -->
+                <div class="chart-container">
+                  <div id="weeklyTransactionChart"></div>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+                <script>
+                  const hariMinggu = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+              
+                  function generateDataRupiah() {
+                    const hasil = [];
+                    for (let i = 0; i < 7; i++) {
+                      const nilai = Math.floor(Math.random() * 400000) + 100000;
+                      hasil.push(nilai);
+                    }
+                    return hasil;
+                  }
+              
+                  const opsiChartMingguan = {
+                    series: [{
+                      name: "Transaksi",
+                      data: generateDataRupiah()
+                    },{
+                        name: "Transaksi",
+                        data: generateDataRupiah()
+                    }
+                    ],
+                    chart: {
+                      type: 'line',
+                      height: 350,
+                      toolbar: { show: false }, // ❌ Hilangkan tombol toolbar
+                      zoom: { enabled: false },
+                      foreColor: '#cbd5e1'
+                    },
+                    colors: ['#727CF5','#14B98C'],
+                    stroke: {
+                      width: 3,
+                      curve: 'smooth'
+                    },
+                    markers: {
+                    //   size: 4
+                    },
+                    xaxis: {
+                      categories: hariMinggu,
+                    //   title: {
+                    //     text: 'Tanggal',
+                    //     style: {
+                    //       color: '#cbd5e1',
+                    //       fontSize: '12px',
+                    //       fontWeight: 300
+                    //     },
+                    //     offsetY: 10
+                    //   },
+                      axisBorder: { show: false },
+                      axisTicks: { show: false }
+                    },
+                    yaxis: {
+                      labels: {
+                        formatter: function(val) {
+                          return 'Rp ' + val.toLocaleString('id-ID');
+                        }
+                      },
+                    //   title: {
+                    //     text: 'Nominal (Rp)',
+                    //     style: {
+                    //       color: '#cbd5e1',
+                    //       fontSize: '12px',
+                    //       fontWeight: 300
+                    //     }
+                    //   }
+                    },
+                    grid: {
+                      show: true,
+                      borderColor: '#4b5563',
+                      strokeDashArray: 0,
+                      xaxis: { lines: { show: true } },
+                      yaxis: { lines: { show: true } },
+                      position: 'back',
+                      padding: {
+                        top: 0,
+                        right: 10,
+                        bottom: 0,
+                        left: 10
+                      }
+                    },
+                    tooltip: {
+                      y: {
+                        formatter: function(val) {
+                          return 'Rp ' + val.toLocaleString('id-ID');
+                        }
+                      }
+                    },
+                    legend: {
+                      show: false // ❌ Ini yang menghilangkan <span class="apexcharts-legend-marker">
+                    }
+                  };
+              
+                  const chartMingguan = new ApexCharts(
+                    document.querySelector("#weeklyTransactionChart"),
+                    opsiChartMingguan
+                  );
+                  chartMingguan.render();
+                </script>
+              </div>
+              
+              
+        </div>
+    </div>
+</body>
+</html>

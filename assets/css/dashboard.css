@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: red solid; */
+}
+
+body {
+    background-color: #343a40;
+    /* height: 100vh; */
+    /* width: 100vw; */
+}
+.hamburger {
+    gap: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.hamburger span{
+    border-radius: 0px;
+    width: 25px;
+    height: 3px;
+    background-color: #AAB8C5;
+    
+}
+
+.navigation{
+    align-items: center;
+    text-align: center;
+    padding-inline: 25px;
+    padding-block: 20px;
+    justify-content: space-between;
+    display: flex;
+    background-color: #3A444E;
+}
+
+.right-feature{
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+.right-feature i{
+    color: #AAB8C5;
+    font-size: 20px;
+}
+
+.account{
+    display: flex;
+    gap: 15px;
+
+    align-items: center;
+    background-color: #3C4655;
+
+    padding-inline:25px ;
+    padding-block: 10px;
+
+    margin-inline: -5px;
+    margin-block: -20px;
+}
+.account i{
+    color: #AAB8C5;
+    font-size: 35px;
+}
+.profile{
+    flex-direction: column;
+    display:flex;
+    text-align: left;
+    color: #AAB8C5;
+}
+
+.profile .name{
+    font-weight:bold;
+    font-size:medium;
+    margin: 0px;
+}
+.profile .status{
+    font-weight:400;
+    font-size: smaller;
+    margin: 0px;
+}
+
+
+
+/* Dashboard */
+.dashboard{
+    margin-top: 10px;
+    /* border: red solid; */
+    /* height: 100vh; */
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+.dashboard h4{
+    color: #A7B6C3;
+    font-size:large;
+}
+
+.card-dashboard {
+    justify-content: space-around;
+
+    background-color: #343A40;
+    gap : 2%;
+    display: flex;
+    height: 50vh;
+    /* border: red solid; */
+    margin: 0px;
+
+}
+
+.card-information-data{
+    margin: 0px;
+    justify-content: space-between;
+    align-content: space-between;
+    width: 40vw;
+    height: 50vh;
+    flex-wrap: wrap;
+    display: flex;
+}
+.four-card{
+    margin: 0px;
+    display: flex;
+    border-radius: 5px;
+    width: 48%;
+    height: 46%;
+    background-color: #37404A;
+}
+
+.card-data{
+    width: 100%;
+    padding: 25px;
+    /* background-color: pink; */
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    justify-content: space-between;
+}
+
+.card-value{
+    /* border: red solid; */
+    justify-content: space-between;
+    flex-direction: column;
+    display: flex;
+    margin: 0px;
+    gap: 20px;
+    align-content: space-between;
+
+}
+.card-value h4,
+.card-value h5{
+    margin: 0px;
+}
+
+.card-value h4{
+    color: #A7B5C1;
+    font-weight:700;
+    font-size:large;
+}
+.card-value h5{
+    color: #818FA0;
+    font-weight: 400;
+    font-size:medium;
+}
+
+.data-value-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20%;
+    color: #727CF5;
+    background-color: #464F74;
+    padding: 15px;
+    border-radius: 5px;
+    /* width: 25%; */
+    height: 45%;
+    font-size: 25px;
+}
+
+.card-transaction{
+    border-radius: 5px;
+    width: 60vw;
+    height: 50vh;
+
+    background-color: #37404A;
+    /* color: #000000; */
+    /* border: #ff0000 solid; */
+}
+
+.chart-transaction{
+    padding: 25px;
+    height: 100%;
+    /* border: rgb(130, 130, 130) solid; */
+    /* margin-bottom: 100px; */
+
+}
+.chart-transaction h4{
+    font-size: large;
+    font-weight:400;
+}
+
+.chart-container {
+    display:flexbox;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.chart-container span{
+    /* display: flex; */
+    flex-direction: column;
+    text-align: center;
+    font-size: small;
+    margin-top: -20px;
+}
+
+.profit{
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 25px;
+    height: 80vh;
+    background-color: #37404A;
+}
+.profit h5{
+    color: #818FA0;
+    font-weight: 400;
+    font-size: large;
+}
+
+.profit-comparison{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.profit-comparison span{
+    text-align: center;
+    color: #818FA0;
+}
+
+.this-week,
+.previos-week{
+    text-align: center;
+}
+
+.profit-value{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.profit-value span{
+    font-size: 30px;
+    font-weight: bolder;
+    color: #A7B5C1;
+}
+
+.purple-cirlce{
+    height: 20px;
+    width: 20px;
+
+    border-radius:50% ;
+    background-color: #727CF5;
+}
+.green-cirlce{
+    height: 20px;
+    width: 20px;
+
+    border-radius:50% ;
+    background-color: #14B98C;
+}
