@@ -42,7 +42,7 @@ const options = {
     },
     colors: ['#727CF5'],
     stroke: {
-        width: 4,
+        width: 6,
         curve: 'smooth'
     },
     markers: {
