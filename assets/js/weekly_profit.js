@@ -3,7 +3,7 @@ const hariMinggu = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Mingg
 function generateDataRupiah() {
   const hasil = [];
   for (let i = 0; i < 7; i++) {
-    const nilai = Math.floor(Math.random() * 400000) + 100000;
+    const nilai = Math.floor(Math.random() * 2000000) + 100000;
     hasil.push(nilai);
   }
   return hasil;
@@ -11,11 +11,12 @@ function generateDataRupiah() {
 
 const opsiChartMingguan = {
   series: [{
-    name: "Transaksi",
+    name: "Keuntungan",
     data: generateDataRupiah()
-  },{
-      name: "Transaksi",
-      data: generateDataRupiah()
+  },
+  {
+    name: "Keuntungan",
+    data: generateDataRupiah()
   }
   ],
   chart: {
@@ -23,7 +24,14 @@ const opsiChartMingguan = {
     height: 400,
     toolbar: { show: false }, //Hilangkan tombol toolbar
     zoom: { enabled: false },
-    foreColor: '#cbd5e1'
+    foreColor: '#818FA0',
+    animations: {
+      enabled: !0,
+      easing: "linear",
+      dynamicAnimation: {
+          speed: 2e3
+      }
+  },
   },
   colors: ['#727CF5','#14B98C'],
   stroke: {
@@ -35,15 +43,6 @@ const opsiChartMingguan = {
   },
   xaxis: {
     categories: hariMinggu,
-  //   title: {
-  //     text: 'Tanggal',
-  //     style: {
-  //       color: '#cbd5e1',
-  //       fontSize: '12px',
-  //       fontWeight: 300
-  //     },
-  //     offsetY: 10
-  //   },
     axisBorder: { show: false },
     axisTicks: { show: false }
   },
@@ -52,15 +51,7 @@ const opsiChartMingguan = {
       formatter: function(val) {
         return 'Rp ' + val.toLocaleString('id-ID');
       }
-    },
-  //   title: {
-  //     text: 'Nominal (Rp)',
-  //     style: {
-  //       color: '#cbd5e1',
-  //       fontSize: '12px',
-  //       fontWeight: 300
-  //     }
-  //   }
+    }
   },
   grid: {
     show: true,
@@ -77,6 +68,7 @@ const opsiChartMingguan = {
     }
   },
   tooltip: {
+    theme: 'false',
     y: {
       formatter: function(val) {
         return 'Rp ' + val.toLocaleString('id-ID');
@@ -84,7 +76,7 @@ const opsiChartMingguan = {
     }
   },
   legend: {
-    show: false // ❌ Ini yang menghilangkan <span class="apexcharts-legend-marker">
+    show: false
   }
 };
 

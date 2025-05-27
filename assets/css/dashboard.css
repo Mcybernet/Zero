@@ -3,43 +3,245 @@
     padding: 0;
     box-sizing: border-box;
     /* border: red solid; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     
 }
 
 body {
     background-color: #343a40;
-    /* height: 100vh; */
-    /* width: 100vw; */
 }
+
+
+
+/* light mode */
+.moon{
+    cursor: pointer;
+}
+body.light-mode {
+    background-color: #F0F0F0;
+}
+  
+body.light-mode .navigation {
+    background-color: #ffffff;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.1);
+}
+  
+body.light-mode .sidebar {
+    /* background-color: #ffffff; */
+    /* color: red; */
+}
+  
+body.light-mode .sidebar a {
+    color: #818FA0;
+}
+
+body.light-mode .account{
+    background-color: #FAFAFD;
+    border-left: #DBDBDB solid;
+}
+
+body.light-mode .right-feature i,
+body.light-mode .account i,
+body.light-mode .profile,
+body.light-mode .profile .name,
+body.light-mode .profile .status,
+body.light-mode .card-value h4,
+body.light-mode .profit h5,
+body.light-mode .profit-comparison span,
+body.light-mode .profit-value span {
+    color: #6C757D;
+}
+
+body.light-mode .card-value h5{
+    color: #8A969C;
+}
+body.light-mode .dashboard h4{
+    color: #6C757D;
+}
+
+body.light-mode .hamburger span{
+    background-color: #6C757D;
+}
+
+
+/* Chart */
+body.light-mode .apexcharts-grid-borders line,
+body.light-mode .apexcharts-gridlines-horizontal line,
+body.light-mode .apexcharts-gridlines-vertical line{
+    stroke: rgba(0, 0, 0, 0.100);
+    stroke-width: 1;
+}
+
+body.light-mode .apexcharts-yaxis-texts-g text,
+body.light-mode .apexcharts-xaxis-texts-g text{
+    fill: #8A969C;
+}
+/* Chart close */
+  
+body.light-mode .card-dashboard,
+body.light-mode .dashboard,
+body.light-mode .card-information-data,
+body.light-mode .profit{
+    background-color: #F0F0F0;
+}
+
+body.light-mode .card-transaction,
+body.light-mode .four-card,
+body.light-mode .profit{
+    background-color: #ffffff;
+}
+  
+body.light-mode .data-value-icon {
+    background-color: #d0d0ff;
+    color: #727CF5;
+}
+/* light mode close */
+
+
+
+
+
+
+
+/* Dashboard Open*/
 .hamburger {
+    padding-left: 25px;
     gap: 4px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    /* transition: transform 5s; */
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+
+    z-index: 2;
+
 }
-.hamburger span{
-    border-radius: 0px;
+.hamburger span {
+    border-radius: 2px;
     width: 25px;
     height: 3px;
     background-color: #AAB8C5;
-    
+    /* transition: all 0.4s ease; */
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+
+}
+
+.hamburger.right span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.right span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.right span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+.hamburger.right{
+    transform: translateX(250px);
 }
 
 .navigation{
     align-items: center;
     text-align: center;
-    padding-inline: 25px;
-    padding-block: 20px;
+    /* padding-inline: 25px; */
+    /* padding-block: 20px; */
     justify-content: space-between;
     display: flex;
     background-color: #3A444E;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.1);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    z-index: 999;
+    height: 70px;
+    /* margin-bottom: 100px; */
+    /* padding-bottom: 100px; */
 }
 
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -350px;
+    width: 250px;
+    height: 100%;
+    background-color: #37404A;
+    color: white;
+    padding-top: 10px;
+    /* padding-inline: 20px; */
+    /* box-shadow: 2px 0 5px rgba(0,0,0,0.3); */
+    z-index: 1000;
+    /* border: red solid; */
+    transition: left 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+
+.sidebar.active {
+    z-index: 1;
+    left: 0;
+}
+
+.logo-image img{
+    padding-top: 15px;
+    width: 140px;
+    /* border: rgb(119, 255, 0) solid; */
+
+}
+
+.sidebar ul{
+    padding-top: 50px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: start; */
+
+    gap: 40px;
+    /* text-align: left; */
+    /* border: red solid; */
+    list-style: none;
+}
+
+.sidebar li {
+    text-decoration: none;
+    list-style: none;
+    
+}
+
+.sidebar a{
+    /* align-items: start; */
+
+    /* padding-left: 20px; */
+    color: #818FA0;
+    /* left: 350px ; */
+    border-style: none;
+    text-decoration: none;
+    /* border: red solid; */
+    display: flex;
+    align-items: center;
+
+}
+
+.sidebar a i{
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+
+
 .right-feature{
+    height: 100%;
+    /* border: red solid; */
     display: flex;
     gap: 50px;
     align-items: center;
+    
 }
 .right-feature i{
     color: #AAB8C5;
@@ -49,15 +251,14 @@ body {
 .account{
     display: flex;
     gap: 15px;
-
     align-items: center;
     background-color: #3C4655;
-
     padding-inline:25px ;
-    padding-block: 10px;
-
-    margin-inline: -5px;
-    margin-block: -20px;
+    height: 100%;
+    /* padding-block: 75px; */
+    /* margin-inline: -5px; */
+    /* margin-block: -20px; */
+    /* height: 100%; */
 }
 .account i{
     color: #AAB8C5;
@@ -75,17 +276,33 @@ body {
     font-size:medium;
     margin: 0px;
 }
+
 .profile .status{
     font-weight:400;
     font-size: smaller;
     margin: 0px;
 }
 
+.dashboard.shift{
+    /* transform: translateX(14vw); */
+    /* width: 85%; */
+    /* transition: transform 1s ; */
+    /* border: red solid; */
+    margin-left: 250px;
+    
 
+}
 
-/* Dashboard */
 .dashboard{
-    margin-top: 10px;
+    /* transition: margin-left 0.3s ease; */
+    transition: margin-left 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+
+    /* margin-top: 5000px; */
+    /* width: 100%; */
+    /* transition: transform 0.5s ; */
+    padding-left: 10px;
+
+    margin-top: 80px;
     /* border: red solid; */
     /* height: 100vh; */
     padding: 20px;
@@ -93,25 +310,45 @@ body {
     gap: 20px;
     flex-direction: column;
 }
+
 .dashboard h4{
     color: #A7B6C3;
     font-size:large;
 }
 
+.card-dashboard.shit{
+    /* width: 10%; */
+}
+
 .card-dashboard {
     justify-content: space-around;
-
     background-color: #343A40;
     gap : 2%;
     display: flex;
+    /* width: 100%; */
     height: 50vh;
     /* border: red solid; */
     margin: 0px;
 
 }
 
+.card-information-data.infovalues{
+    width: 40%;
+    /* transform: translateX(10px); */
+    /* transform: translateX(10px); */
+
+
+    /* transition: transform 1s ease; */
+
+}
+
 .card-information-data{
+    box-sizing: border-box;
+
+    /* border: red solid; */
     margin: 0px;
+    /* transition: transform 1s ease; */
+
     justify-content: space-between;
     align-content: space-between;
     width: 40vw;
@@ -119,6 +356,8 @@ body {
     flex-wrap: wrap;
     display: flex;
 }
+
+
 .four-card{
     margin: 0px;
     display: flex;
@@ -126,13 +365,18 @@ body {
     width: 48%;
     height: 46%;
     background-color: #37404A;
+    /* border: red solid; */
+
+    
 }
 
 .card-data{
+    position: relative;
+
     width: 100%;
     padding: 25px;
     /* background-color: pink; */
-    display: flex;
+    display:flex;
     align-items: center;
     margin: 0px;
     justify-content: space-between;
@@ -140,14 +384,16 @@ body {
 
 .card-value{
     /* border: red solid; */
+    /* padding-right: -100px; */
+    width: 100%;
     justify-content: space-between;
     flex-direction: column;
     display: flex;
     margin: 0px;
     gap: 20px;
     align-content: space-between;
-
 }
+
 .card-value h4,
 .card-value h5{
     margin: 0px;
@@ -158,6 +404,7 @@ body {
     font-weight:700;
     font-size:large;
 }
+
 .card-value h5{
     color: #818FA0;
     font-weight: 400;
@@ -165,59 +412,98 @@ body {
 }
 
 .data-value-icon{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-bottom: 20%;
     color: #727CF5;
     background-color: #464F74;
-    padding: 15px;
+    padding: 10px 20px ;
     border-radius: 5px;
-    /* width: 25%; */
-    height: 45%;
     font-size: 25px;
+    margin-bottom: 50px;
+    /* border: red solid; */
+}
+
+.card-transaction.minimize{
+    width: 60%;
+    /* transform: translateX(0px); */
+    /* transition: transform 1s ease; */
+
 }
 
 .card-transaction{
+    box-sizing: border-box;
+    /* transition: transform 1s ease; */
     border-radius: 5px;
-    width: 60vw;
-    height: 50vh;
 
+    width: 70%;
+    /* height: 50%; */
     background-color: #37404A;
-    /* color: #000000; */
-    /* border: #ff0000 solid; */
+    /* border: red solid; */
 }
 
 .chart-transaction{
     padding: 25px;
     height: 100%;
-    /* border: rgb(130, 130, 130) solid; */
-    /* margin-bottom: 100px; */
-
 }
+
 .chart-transaction h4{
     font-size: large;
     font-weight:400;
 }
 
-.chart-container {
-    display:flexbox;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    border-radius: 10px;
+
+
+/* custom tooltip */
+.apexcharts-tooltip {
+    background: #ff000080 !important;
+    color: #888888 !important;
+    border-radius: 8px !important;
+    /* border: 1px solid #006aff !important; */
+    font-size: 13px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.apexcharts-tooltip-title {
+    background: #3C4655 !important;
+    color: #c8c8c8 !important;
+    font-weight: bold !important;
+    font-size: 13px !important;
     text-align: center;
 }
 
-.chart-container span{
-    /* display: flex; */
-    flex-direction: column;
-    text-align: center;
-    font-size: small;
-    margin-top: -20px;
+  /* Tooltip X-axis bawah (bulan + tanggal) */
+.apexcharts-xaxis-tooltip,
+.apexcharts-xaxis-tooltip-bottom,
+.apexcharts-theme-false {
+    background: #37404A !important;
+    border: 1px solid #6b7280 !important;
+    border-radius: 6px !important;
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.150) !important;
+    /* color: #ff0000; */
+}
+
+.apexcharts-xaxis-tooltip-text,
+.apexcharts-theme-false {
+    color: #999999 !important;
+}
+/* custom tooltip close */
+
+
+.profit.infovaluesweekly{
+    /* width: 100%; */
+    /* transform: translateX(10px); */
+    /* transition: transform 1s ease; */
+
 }
 
 .profit{
+    width: 100%;
+    /* transition: transform 1s ease; */
+
     margin-top: 10px;
     border-radius: 5px;
     padding: 25px;
@@ -271,3 +557,237 @@ body {
     border-radius:50% ;
     background-color: #14B98C;
 }
+
+
+/* chart transaki */
+  
+/* chart transaki Close */
+
+/* Dashboard Close*/
+
+
+
+
+
+/* Bahan Baku Open */
+.page-bahan{
+    padding: 25px;
+    background-color: #37404A;
+    /* width: 100%; */
+}
+
+.add-bahan{
+    display: flex;
+    /* justify-content: center; */
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+.add-bahan button{
+    display: flex;
+    gap: 10px;
+
+    color: white;
+    padding: 10px 25px;
+    border-radius: 6px;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    background-color: #F95C7C;
+    transition: 0.5s;
+
+}
+
+.add-bahan button:hover{
+    transition: 0.5s;
+    background-color: #ab4056;
+}
+
+.table-bahan{
+    /* padding-bottom: 150px; */
+}
+
+.table-bahan table {
+    background-color: transparent !important;
+    
+}
+
+.table-bahan table th{
+    background-color: #464F5B !important;
+    color: #A7B6C3 !important;
+    border:none;
+}
+
+.table-bahan thead th:first-child {
+    padding-inline: 50px;
+
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.table-bahan thead th:last-child {
+    padding-inline: 50px;
+
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 16x;
+}
+
+
+.table-bahan table td {
+    color: #A7B6C3 !important;
+    /* stroke: #A7B6C3; */
+
+    background-color: transparent !important;
+}
+
+
+.table-bahan th {
+    text-align: left;
+}
+
+.table-bahan tbody td {
+    text-align: left;
+    padding-block: 15px;
+    padding-inline: 50px;
+    border-bottom: 1px solid #464F5B; /* jika perlu langsung di setiap cell */
+}
+
+.dt-length{
+    color: #A7B6C3;
+    border: none;
+
+}
+
+.form-select:focus {
+    border: none;
+    border-color: transparent !important;
+    outline: none;
+    box-shadow: 0 0 0 .1rem transparent !important;
+}
+
+.form-select option{
+    background-color: #37404A;
+    color: #A7B6C3;
+
+}
+  
+
+/* .dt-length select{
+    color: #A7B6C3;
+    background-color: #404954;
+    border: none;
+    appearance: none;
+
+} */
+
+/* Sembunyikan default arrow */
+.dt-length select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #404954;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='rgba(167, 182, 195, 1)' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+
+    border: none;
+    color: #A7B6C3;
+    padding: 5px; 
+    padding-right: 50px;
+  }
+
+.dt-length select option{
+
+}
+  
+
+.dt-search{
+    color: #A7B6C3;
+}
+
+.dt-search label{
+}
+
+.dt-search input{
+    background-color: #404954;
+    border: none;
+}
+
+.dt-search input i{
+display: none;
+}  
+
+div.dt-container div.dt-search input{
+    color: #A7B6C3;
+    background-color: #404954;
+
+}
+
+.form-control:focus {
+    color: #A7B6C3;
+    border: none;
+    border-color: transparent !important;
+    outline: none;
+    box-shadow: 0 0 0 .1rem transparent !important;
+}
+
+
+.dt-info{
+    padding-top:20px ;
+    color: #A7B6C3;
+}
+
+.pagination {
+    --bs-pagination-padding-x: 0.5rem;
+    --bs-pagination-padding-y: 0.5rem; /* Sama agar tinggi dan lebar proporsional */
+    --bs-pagination-font-size: 1rem;
+    --bs-pagination-color: #A7B6C3;
+    --bs-pagination-bg: transparent;
+    --bs-pagination-border-width: 0; /* Tidak perlu border */
+    --bs-pagination-border-radius: 50%; /* Bulat sempurna */
+    --bs-pagination-hover-color: #A7B6C3;
+    --bs-pagination-hover-bg: #727CF5;
+    --bs-pagination-hover-border-color: transparent;
+    --bs-pagination-focus-color: #535558;
+    --bs-pagination-active-color: #fff;
+    --bs-pagination-active-bg: #727CF5;
+    --bs-pagination-active-border-color: transparent; /* Hilangkan border aktif */
+    --bs-pagination-disabled-color: #A7B6C3;
+    --bs-pagination-disabled-bg: transparent;
+    --bs-pagination-disabled-border-color: transparent;
+    
+    display: flex;
+    padding-top:20px ;
+
+    padding-left: 0;
+    list-style: none;
+    /* padding-top: 1rem; */
+    gap: 0.5rem; /* Tambah jarak antar item jika perlu */
+}
+
+.pagination .page-link.first,
+.pagination .page-link.last {
+    display: none !important;
+}
+
+/* Tambahan: bulatkan setiap tombol */
+.pagination .page-link {
+    border-radius: 50% !important;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+/* Tambahan untuk menghilangkan border aktif saat memilih halaman */
+.pagination .page-item.active .page-link {
+    border: none !important;  /* Hilangkan border aktif */
+}
+
+
+/* Bahan Baku Close */

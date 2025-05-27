@@ -14,21 +14,38 @@
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/css/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
 
 
-
-
+    <style></style>
 </head>
 <body>
     <nav class="navigation">
-        <div class="hamburger">
+        <div class="hamburger" id="hamburger">
             <span></span>
             <span></span>
             <span></span>
         </div>
+        <div>
+
+
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="logo-image">
+                <img src="../assets/image/logo_NP.png" alt="">
+            </div>
+          <!-- <h3>Nasi Pajero</h3> -->
+          <ul>
+            <li><a href="Dashboard.html"><i class="bi bi-grid"></i> Dashboard</a></li>
+            <li><a href="bahan.html"><i class="bi bi-box2"></i> Bahan Baku</a></li>
+            <li><a href="#"><i class="bi bi-basket"></i> Ambil</a></li>
+            <li><a href="#"><i class="bi bi-shop-window"></i> Stok Jual</a></li>
+            <li><a href="#"><i class="bi bi-credit-card"></i> Transaksi</a></li>
+          </ul>
+        </div>
         
         <div class="right-feature">
-            <i class="moon bi bi-moon-fill"></i>
+            <i style="cursor: pointer;" class="moon bi bi-moon-fill"></i>
 
             <div class="account">
                 <i class="bi bi-person-circle"></i>
@@ -40,10 +57,11 @@
         </div>
     </nav>
 
-    <div class="dashboard">
+
+    <div class="dashboard" id="dashboard">
         <h4>Dashboard</h4>
         <div class="card-dashboard">
-            <div class="card-information-data">
+            <div class="card-information-data" id="infovalue">
                 <div class="four-card">
                     <div class="card-data">
                         <div class="card-value">
@@ -60,8 +78,12 @@
                     <div class="card-data">
                         <div class="card-value">
                             <h5>Transaksi</h5>
-                            <h4>23</h4>
+                            <h4 id="TransactionValue">23</h4>
                             <h5>Total Transaksi Hari ini</h5>
+                            <script>
+                                let TransactionRandom = Math.floor(Math.random() * 50) + 15;
+                                document.getElementById("TransactionValue").innerText = TransactionRandom;
+                            </script>
                         </div>
                         <div class="data-value-icon">
                             <i class="bi bi-credit-card"></i>
@@ -72,8 +94,12 @@
                     <div class="card-data">
                         <div class="card-value">
                             <h5>Stok</h5>
-                            <h4>3</h4>
+                            <h4 id="StokValue"></h4>
                             <h5>Stok Menipis</h5>
+                            <script>
+                                let StokRandom = Math.floor(Math.random() * 10) + 1;
+                                document.getElementById("StokValue").innerText = StokRandom;
+                            </script>
                         </div>
                         <div class="data-value-icon">
                             <i class="bi bi-exclamation-circle"></i>
@@ -84,8 +110,13 @@
                     <div class="card-data">
                         <div class="card-value">
                             <h5>Pendapatan</h5>
-                            <h4>Rp 210.000</h4>
+                            <h4 id="ProfitRandomValue"></h4>
                             <h5>Keuntungan Hari ini</h5>
+                            <script>
+                                let ProfitRandom = Math.floor(Math.random() * 5000000) + 800000;
+                                let FormatProfit = "Rp " + ProfitRandom.toLocaleString("id-ID");
+                                document.getElementById("ProfitRandomValue").innerText = FormatProfit;
+                            </script>
                         </div>
                         <div class="data-value-icon">
                             <i class="bi bi-bar-chart-line"></i>
@@ -94,20 +125,23 @@
                  </div>
             </div>
              
-            <div class="card-transaction">
+            <div class="card-transaction" id="chartdiv">
                 <div class="chart-transaction">
                     <h4>Transaksi Harian</h4>
                     <div class="chart-container">
                         <div id="transactionTrendChart"></div>
+                            <script src="../assets/js/transaksi_harian.js"></script>
                     </div>
-                    <script src="../assets/js/transaksi_harian.js"></script>
                     
                 </div>
                 
             </div>
 
         </div>
-        <div class="profit">
+
+
+
+        <div class="profit" id="infovalueweekly">
             <h5>Keuntungan</h5>
             <div class="profit-comparison">
                 <div class="this-week">
@@ -131,12 +165,64 @@
             <div class="chart-weekly">
               <div class="chart-container">
                 <div id="weeklyTransactionChart"></div>
+                    <script src="../assets/js/weekly_profit.js"></script>
               </div>
-              <script src="../assets/js/weekly_profit.js"></script>
             </div>
               
               
         </div>
     </div>
+        <!-- Apex Chart line Demo js -->
+        <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
+        <script src="https://apexcharts.com/samples/assets/irregular-data-series.js"></script>>
+        <script>
+            const hamburger = document.getElementById("hamburger");
+            const sidebar = document.getElementById("sidebar");
+            const dashboard = document.getElementById("dashboard");
+            const chartdiv = document.getElementById("chartdiv");
+            const infovalue = document.getElementById("infovalue");
+            const infovalueweekly = document.getElementById("infovalueweekly");
+          
+            hamburger.addEventListener("click", () => {
+              sidebar.classList.toggle("active");
+              dashboard.classList.toggle("shift");
+              chartdiv.classList.toggle("minimize");
+              infovalue.classList.toggle("infovalues");
+              infovalueweekly.classList.toggle("infovaluesweekly");
+              hamburger.classList.toggle("right"); // Aktifkan animasi hamburger
+            });
+
+
+
+
+
+            const moonIcon = document.querySelector(".moon");
+
+            // Set mode on page load
+            document.addEventListener("DOMContentLoaded", () => {
+                const mode = localStorage.getItem("mode");
+                if (mode === "light") {
+                document.body.classList.add("light-mode");
+                moonIcon.classList.replace("bi-moon-fill","bi-brightness-high-fill");
+                }
+            });
+
+            moonIcon.addEventListener("click", () => {
+                document.body.classList.toggle("light-mode");
+
+                // Simpan mode di localStorage
+                if (document.body.classList.contains("light-mode")) {
+                localStorage.setItem("mode", "light");
+                moonIcon.classList.replace("bi-moon-fill","bi-brightness-high-fill");
+
+                } else {
+                localStorage.setItem("mode", "dark");
+                moonIcon.classList.replace("bi-brightness-high-fill","bi-moon-fill");
+
+                }
+            });
+
+          </script>
+          
 </body>
 </html>

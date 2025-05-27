@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard with Hamburger Navigation</title>
+
+    <!-- Include ApexCharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <style>
+        /* Global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fb;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Hamburger menu */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 10px;
+            z-index: 10;
+          transition: transform 0.2s ease;
+
+        }
+        .hamburger.move-right{
+          transform: translateX(250px); /* lebar sidebar */
+          transition: transform 0.2s ease;
+        }
+
+        .hamburger span {
+            height: 3px;
+            background-color: #333;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: 0.3s ease;
+            z-index: 5;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #ecf0f1;
+            padding: 15px;
+            text-decoration: none;
+            margin: 10px 0;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+
+        /* Main content container */
+        .main-content {
+            display: flex;
+            transition: margin-left 0.3s ease;
+            padding: 50px;
+            margin-left: 0;
+        }
+
+        /* Chart container */
+        .chart-container {
+            width: 50%;
+            padding: 10px;
+        }
+
+        /* Default chart style */
+        .chart {
+            background-color: #e5e5e5;
+            height: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Adjust layout when sidebar is active */
+        .main-content.shift {
+            margin-left: 250px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <a href="#">Dashboard</a>
+        <a href="#">Bahan Baku</a>
+        <a href="#">Stok</a>
+        <a href="#">Transaksi</a>
+        <a href="#">Laporan</a>
+    </div>
+
+    <!-- Hamburger Menu (pindah ke kanan) -->
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <div class="chart-container">
+            <div class="chart" id="chart1">
+                <!-- Chart 1 -->
+            </div>
+        </div>
+        <div class="chart-container">
+            <div class="chart" id="chart2">
+                <!-- Chart 2 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Set up hamburger and sidebar toggle
+        const hamburger = document.getElementById("hamburger");
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("main-content");
+
+        hamburger.addEventListener("click", () => {
+            sidebar.classList.toggle("active");
+            mainContent.classList.toggle("shift");
+            hamburger.classList.toggle("move-right");
+        });
+
+        // Chart 1 setup (example: Line chart)
+        var options1 = {
+            chart: {
+                type: 'line',
+                height: '100%'
+            },
+            series: [{
+                name: 'Sales',
+                data: [30, 40, 45, 50, 49, 60, 70, 91, 125]
+            }],
+            xaxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+            },
+            title: {
+                text: 'Sales Over Time',
+                align: 'center'
+            }
+        };
+
+        var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+        chart1.render();
+
+        // Chart 2 setup (example: Bar chart)
+        var options2 = {
+            chart: {
+                type: 'bar',
+                height: '100%'
+            },
+            series: [{
+                name: 'Revenue',
+                data: [20, 40, 35, 50, 49, 60, 70, 60, 80]
+            }],
+            xaxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+            },
+            title: {
+                text: 'Monthly Revenue',
+                align: 'center'
+            }
+        };
+
+        var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+        chart2.render();
+    </script>
+
+</body>
+
+</html>

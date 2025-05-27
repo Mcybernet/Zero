@@ -1,37 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamburger Menu Effect</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
 
+    .hamburger {
+      font-size: 30px;
+      padding: 10px 20px;
+      cursor: pointer;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+      background: #333;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .content {
+      transition: transform 0.3s ease, scale 0.3s ease;
+      padding: 60px 20px 20px 20px;
+      background-color: #f4f4f4;
+      min-height: 100vh;
+    }
+
+    .minimized {
+      transform: scale(0.85) translateX(200px);
+      transform-origin: left center;
+    }
+  </style>
 </head>
 <body>
-    <div>
-        <canvas id="myChart"></canvas>
-        <script>
-            const ctx = document.getElementById('myChart');
-          
-            new Chart(ctx, {
-              type: 'line',
-              data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                  label:"uji",
-                  data: [12, 19, 3, 5, 2, 3],
-                  borderWidth: 2
-                }]
-              },
-              options: {
-                scales: {
-                  y: {
-                    beginAtZero: true
-                  }
-                }
-              }
-            });
-          </script>
-    </div>
+  <div class="hamburger" id="hamburger">
+    ☰
+  </div>
+
+  <div class="content" id="content">
+    <h1>Welcome!</h1>
+    <p>This is some main content. Click the hamburger icon to minimize this view.</p>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const content = document.getElementById('content');
+
+    hamburger.addEventListener('click', () => {
+      content.classList.toggle('minimized');
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Line Chart Dark Mode</title>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <style>
+    body {
+      background-color: #1f2937;
+      color: #f9fafb;
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+
+    #chart {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Tooltip utama */
+    .apexcharts-tooltip {
+      background: #ff000080 !important;
+      color: #f9fafb !important;
+      border-radius: 8px !important;
+      border: 1px solid #4b5563 !important;
+      font-size: 13px !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    .apexcharts-tooltip-title {
+      background: #f20000 !important;
+      color: #f3f4f6 !important;
+      font-weight: bold !important;
+      font-size: 13px !important;
+      text-align: center;
+    }
+
+    /* Tooltip X-axis bawah (bulan + tanggal) */
+    .apexcharts-xaxis-tooltip,
+    .apexcharts-xaxis-tooltip-bottom,
+    .apexcharts-theme-false {
+      background: #1f2937 !important; /* Warna abu-abu */
+      border: 1px solid #ffffff !important;
+      border-radius: 6px !important;
+      box-shadow: 0 2px 8px #ff000080 !important;
+      color: white;
+    }
+
+    .apexcharts-xaxis-tooltip-text,
+    .apexcharts-theme-false {
+      /* fill: #f9fafb !important; */
+      /* font-weight: 600; */
+      color: #f9fafb !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+
+  <script>
+    // Generate data acak transaksi
+    function generateTransactionData() {
+      const data = [];
+      for (let i = 0; i < 15; i++) {
+        const day = new Date();
+        day.setDate(day.getDate() - 15 + i);
+        const isWeekend = [0, 6].includes(day.getDay());
+        const base = isWeekend ? 25 : 15;
+        const variation = Math.random() * 10;
+        data.push(Math.round(base + variation));
+      }
+      return data;
+    }
+
+    // Generate label tanggal (Apr 4, Apr 5, dst)
+    function generateDateLabels() {
+      const labels = [];
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+                      'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const today = new Date();
+      for (let i = 14; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(date.getDate() - i);
+        labels.push(`${months[date.getMonth()]} ${date.getDate()}`);
+      }
+      return labels;
+    }
+
+    // Konfigurasi chart
+    const options = {
+      series: [{
+        name: "Transaksi Harian",
+        data: generateTransactionData()
+      }],
+      chart: {
+        type: 'line',
+        height: 300,
+        zoom: { enabled: false },
+        toolbar: { show: false },
+        foreColor: '#d1d5db',
+      },
+      colors: ['#3B82F6'],
+      stroke: {
+        width: 4,
+        curve: 'smooth'
+      },
+      markers: {
+        size: 4,
+        colors: ['#3B82F6'],
+        strokeColors: '#ff000080',
+
+        strokeWidth: 2
+      },
+      xaxis: {
+        categories: generateDateLabels(),
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        tooltip: {
+          enabled: true
+        },
+        labels: {
+          style: {
+            colors: '#d1d5db',
+            fontSize: '12px'
+          }
+        },
+        title: {
+          text: 'Tanggal',
+          style: {
+            color: '#9ca3af',
+            fontSize: '12px',
+            fontWeight: 400
+          }
+        }
+      },
+      yaxis: {
+        min: 0,
+        max: 40,
+        tickAmount: 5,
+        labels: {
+          style: {
+            colors: '#d1d5db',
+            fontSize: '12px'
+          }
+        }
+      },
+      grid: {
+        borderColor: '#374151',
+        xaxis: { lines: { show: true }},
+        yaxis: { lines: { show: true }},
+        padding: { top: 0, right: 10, bottom: 0, left: 10 }
+      },
+      tooltip: {
+        theme: false,
+        x: {
+          // formatter: (val) => `<span style="color: #ff000080;">📅 ${val}</span>`
+        },
+        y: {
+          formatter: (val) => `${val} Transaksi`
+        }
+      }
+    };
+
+    // Render chart
+    const chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+  </script>
+</body>
+</html>

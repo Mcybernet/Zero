@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hamburger Menu Slide Content</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      overflow-x: hidden;
+    }
+
+    .hamburger {
+      position: fixed;
+      width: 100vw;
+      left: -10vw;
+      padding-block: 20px;
+      padding-inline: 12vw;
+      cursor: pointer;
+      z-index: 1;
+      transition: transform 0.5s ease;
+      background-color: grey;
+    }
+
+    .hamburger.right{
+      transform: translateX(240px);
+    }
+
+    .hamburger span {
+      width: 30px;
+      /* padding-left: 1000px; */
+      display: block;
+      height: 4px;
+      border-radius: 10px;
+      background: #ff0000;
+      margin: 5px 0;
+      transition: 0.5s;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -350px;
+      width: 200px;
+      height: 100%;
+      background-color: #333;
+      color: white;
+      padding: 60px 20px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+      transition: left 0.5s ease;
+      z-index: 1000;
+    }
+
+    .content {
+      transition: transform 0.5s ease;
+      padding-top: 70px;
+      padding-left: 30px;
+    }
+
+    .sidebar.active {
+      z-index: 1;
+      left: 0;
+    }
+
+    .content.shift {
+      transform: translateX(240px);
+    }
+
+    
+
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+
+  <div class="sidebar" id="sidebar">
+    <h2>Menu</h2>
+    <ul>
+      <li><a href="#" style="color: white;">Home</a></li>
+      <li><a href="#" style="color: white;">About</a></li>
+      <li><a href="#" style="color: white;">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="content" id="content">
+    <h1>Welcome!</h1>
+    <p>This is your main content. Click the hamburger icon to toggle the sidebar and see the sliding effect.</p>
+    <div style="width: 99vw; height: 800px; background-color: grey; margin-right: -10vw;"></div>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const sidebar = document.getElementById("sidebar");
+    const content = document.getElementById("content");
+
+    hamburger.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+      content.classList.toggle("shift");
+      hamburger.classList.toggle("right");
+    });
+  </script>
+
+</body>
+</html>
